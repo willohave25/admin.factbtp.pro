@@ -1,1 +1,68 @@
-Nouveau repo GitHub : factbtp-admin
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FacBTP Admin — Connexion</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-page">
+
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo__icon">🏗</div>
+      <div>
+        <div class="login-logo__title">FacBTP</div>
+        <div class="login-logo__sub">Espace Administration</div>
+      </div>
+    </div>
+
+    <h1 class="login-title">Connexion</h1>
+    <p class="login-desc">Accès réservé à l'équipe W2K-Digital</p>
+
+    <form id="loginForm" class="login-form" autocomplete="off">
+      <div class="field">
+        <label for="password">Mot de passe administrateur</label>
+        <div class="field__input-wrap">
+          <input type="password" id="password" placeholder="••••••••••••" autocomplete="current-password">
+          <button type="button" class="field__eye" id="togglePwd" aria-label="Afficher le mot de passe">👁</button>
+        </div>
+      </div>
+      <p class="login-err" id="loginErr" style="display:none">Mot de passe incorrect.</p>
+      <button type="submit" class="btn btn--primary btn--full" id="loginBtn">Se connecter</button>
+    </form>
+
+    <p class="login-footer">factbtp.pro · W2K-Digital © 2025</p>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Redirect si déjà connecté
+    if (localStorage.getItem('fbtp_token')) window.location.href = 'dashboard.html';
+
+    document.getElementById('togglePwd').addEventListener('click', function() {
+      const inp = document.getElementById('password');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('password').value;
+      const btn = document.getElementById('loginBtn');
+      const err = document.getElementById('loginErr');
+      err.style.display = 'none';
+      btn.disabled = true; btn.textContent = 'Connexion...';
+      const ok = await adminLogin(pwd);
+      if (ok) {
+        window.location.href = 'dashboard.html';
+      } else {
+        err.style.display = '';
+        btn.disabled = false; btn.textContent = 'Se connecter';
+      }
+    });
+  </script>
+</body>
+</html>
