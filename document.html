@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FacBTP Admin — Document</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__icon">🏗</span>
+      <div>
+        <div class="sidebar__title">FacBTP</div>
+        <div class="sidebar__sub">Admin</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="sidebar__link">📋 Commandes</a>
+      <a href="https://factbtp.pro" class="sidebar__link" target="_blank">🌐 factbtp.pro</a>
+    </nav>
+    <button class="sidebar__logout" id="logoutBtn">⬅ Déconnexion</button>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <div style="display:flex;align-items:center;gap:1rem">
+        <a href="dashboard.html" class="btn btn--outline btn--sm">← Retour</a>
+        <div>
+          <h1 class="admin-header__title" id="docTitle">Chargement...</h1>
+          <p class="admin-header__sub" id="docMeta"></p>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.75rem">
+        <button class="btn btn--outline btn--sm" id="btnPrint">🖨 Imprimer</button>
+        <button class="btn btn--primary" id="btnSend" disabled>📧 Envoyer au client</button>
+      </div>
+    </header>
+
+    <!-- Infos client + action -->
+    <div class="doc-info-bar" id="docInfoBar" style="display:none">
+      <div class="doc-info-bar__item">
+        <span class="doc-info-bar__label">Entreprise</span>
+        <span class="doc-info-bar__val" id="infoEnt">—</span>
+      </div>
+      <div class="doc-info-bar__item">
+        <span class="doc-info-bar__label">Email client</span>
+        <span class="doc-info-bar__val" id="infoEmail">—</span>
+      </div>
+      <div class="doc-info-bar__item">
+        <span class="doc-info-bar__label">Tél Wave</span>
+        <span class="doc-info-bar__val" id="infoTelWave">—</span>
+      </div>
+      <div class="doc-info-bar__item">
+        <span class="doc-info-bar__label">Montant</span>
+        <span class="doc-info-bar__val doc-info-bar__val--amount" id="infoMontant">—</span>
+      </div>
+      <div class="doc-info-bar__item">
+        <span class="doc-info-bar__label">Statut</span>
+        <span class="doc-info-bar__val" id="infoStatut">—</span>
+      </div>
+    </div>
+
+    <!-- Alert send success -->
+    <div class="send-success" id="sendSuccess" style="display:none">
+      ✅ Email envoyé au client ! La commande est marquée comme traitée.
+    </div>
+
+    <!-- Document preview -->
+    <div class="doc-preview-wrap">
+      <div id="docLoader" class="table-loader"><div class="spinner-sm"></div> Chargement du document...</div>
+      <div class="doc-preview-frame" id="docPreview" style="display:none"></div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/document.js"></script>
+</body>
+</html>

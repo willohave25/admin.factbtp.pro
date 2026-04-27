@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FacBTP Admin — Tableau de bord</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-page">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__icon">🏗</span>
+      <div>
+        <div class="sidebar__title">FacBTP</div>
+        <div class="sidebar__sub">Admin</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <a href="dashboard.html" class="sidebar__link sidebar__link--active">📋 Commandes</a>
+      <a href="#" class="sidebar__link" id="sidebarFactbtp" target="_blank">🌐 factbtp.pro</a>
+    </nav>
+    <button class="sidebar__logout" id="logoutBtn">⬅ Déconnexion</button>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <div>
+        <h1 class="admin-header__title">Tableau de bord</h1>
+        <p class="admin-header__sub" id="headerDate"></p>
+      </div>
+      <button class="btn btn--outline btn--sm" id="refreshBtn">↻ Actualiser</button>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card stat-card--wait">
+        <div class="stat-card__val" id="statAttente">—</div>
+        <div class="stat-card__label">En attente Wave</div>
+      </div>
+      <div class="stat-card stat-card--ok">
+        <div class="stat-card__val" id="statEnvoyes">—</div>
+        <div class="stat-card__label">Documents envoyés</div>
+      </div>
+      <div class="stat-card stat-card--total">
+        <div class="stat-card__val" id="statTotal">—</div>
+        <div class="stat-card__label">Total commandes</div>
+      </div>
+      <div class="stat-card stat-card--revenue">
+        <div class="stat-card__val" id="statRevenu">—</div>
+        <div class="stat-card__label">Revenus FCFA</div>
+      </div>
+    </div>
+
+    <!-- Filtres -->
+    <div class="filter-bar">
+      <button class="filter-btn filter-btn--active" data-filter="all">Toutes</button>
+      <button class="filter-btn" data-filter="en_attente">⏳ En attente</button>
+      <button class="filter-btn" data-filter="envoye">✅ Envoyés</button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div id="tableLoader" class="table-loader"><div class="spinner-sm"></div> Chargement...</div>
+      <div id="tableEmpty" class="table-empty" style="display:none">Aucune commande trouvée.</div>
+      <table class="orders-table" id="ordersTable" style="display:none">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>N° Doc</th>
+            <th>Entreprise client</th>
+            <th>Email</th>
+            <th>Tél Wave</th>
+            <th>Montant</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ordersBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
