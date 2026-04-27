@@ -108,9 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.textContent = '⏳ Envoi en cours...';
 
     try {
-      // Générer le HTML du document pour l'email
-      const htmlDoc = document.getElementById('docPreview').innerHTML;
-
       const r = await fetch(API_URL + '/api/admin/send/' + docId, {
         method:  'POST',
         headers: {
@@ -118,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
           'Authorization': 'Bearer ' + getToken()
         },
         body: JSON.stringify({
-          htmlDocument: htmlDoc,
           emailClient:  docData.email_client,
           nomClient:    docData.nom_client,
           nomEntreprise:docData.nom_entreprise,
